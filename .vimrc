@@ -69,9 +69,9 @@ set runtimepath+=$HOME/.vim/runtime,$HOME/.vim/,$HOME/.vim,$HOME/.vim/runtime/sy
 set cursorline
 " カレントウィンドウにのみ罫線を引く
 augroup cch
-     autocmd! cch
-     autocmd WinLeave * set nocursorline
-     autocmd WinEnter,BufRead * set cursorline
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
 augroup END
 
 :hi clear CursorLine
@@ -123,25 +123,39 @@ map cond i<BS><CR>console.debug();<Esc>lxhhha
 " USキーボード用マッピング
 nmap ; :
 
+set nocompatible
 
-" Vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-" Vundle本体
-" Vundle 'sgur/vundle'
-" github〜
-Bundle 'tpope/vim-fugitive'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/vimproc'
-Bundle 'tyru/caw.vim'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'mileszs/ack.vim'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'mattn/emmet-vim' 
-" vim-scripts repos
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
+
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'mattn/emmet-vim' 
+
+call neobundle#end()
+
+" Required:
 filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
