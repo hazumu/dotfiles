@@ -24,16 +24,12 @@ set incsearch " インクリメンタルサーチ
 
 "" バックアップ
 set nobackup " ファイル上書きでバックアップファイルを作成
-""set backupdir=/tmp " バックアップファイルの保存場所
 
 "" 表示
-" set background=light " 背景が明るい指定（シンタックスの配色に影響）
 set background=dark " 背景が暗い指定（シンタックスの配色に影響）
 syntax on " シンタックスの色づけ有効
 set ruler " ルーラを表示
 set showcmd " 入力中のコマンド（キー）を右下に表示
-"set wildmenu " 入力中のタブ補完を強化
-"set wildmode=list:longest " 入力補完の設定（リスト表示で最長一致）
 set showmatch " 括弧入力で対応する括弧を一瞬強調
 
 set foldmethod=marker
@@ -123,39 +119,26 @@ map cond i<BS><CR>console.debug();<Esc>lxhhha
 " USキーボード用マッピング
 nmap ; :
 
-set nocompatible
-
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
-
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+" dein設定
+if &compatible
+  set nocompatible
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin('~/vim')
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'mattn/emmet-vim' 
+call dein#add('~/vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('mattn/emmet-vim')
+call dein#add('nathanaelkane/vim-indent-guides')
+call dein#add('Shougo/unite.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('tpope/vim-fugitive')
 
-call neobundle#end()
+call dein#end()
 
-" Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+" nerdtree設定
+autocmd vimenter * NERDTree
