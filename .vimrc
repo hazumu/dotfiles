@@ -1,14 +1,12 @@
 " ビープ音を鳴らさない
 set vb t_vb=
 
-" 自動コメントアウトを停止
-set formatoptions-=ro
+" 自動コメントアウトを停止 set formatoptions-=ro
 autocmd FileType * setlocal formatoptions-=ro 
 
 set term=builtin_xterm
 syntax on
-set enc=utf-8 " vim 内部の文字コード（ブランクバッファの文字コードに影響）
-set fenc=utf-8 " デフォルトのファイル文字コード
+set enc=utf-8 " vim 内部の文字コード（ブランクバッファの文字コードに影響） set fenc=utf-8 " デフォルトのファイル文字コード
 set fencs=utf-8,iso-2022-jp,euc-jp,cp932 " 対応する文字コード
 set langmenu=ja_JP.utf-8
 
@@ -131,10 +129,10 @@ call dein#begin('~/vim')
 call dein#add('~/vim')
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('mattn/emmet-vim')
-call dein#add('nathanaelkane/vim-indent-guides')
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tpope/vim-fugitive')
+call dein#add('Yggdroot/indentLine')
 
 call dein#end()
 
@@ -142,3 +140,4 @@ filetype plugin indent on
 
 " nerdtree設定
 autocmd vimenter * NERDTree
+
