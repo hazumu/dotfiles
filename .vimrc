@@ -133,7 +133,7 @@ call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tpope/vim-fugitive')
 call dein#add('Yggdroot/indentLine')
-
+call dein#add('terryma/vim-multiple-cursors')
 call dein#end()
 
 filetype plugin indent on
